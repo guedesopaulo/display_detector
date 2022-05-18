@@ -1,0 +1,2 @@
+for i in [0..number]; do ffmpeg -i $i.MOV  -r 2/1 frames/1_"$i"_%d.jpg; done
+

@@ -90,7 +90,7 @@ for e in range(PARAMS["epochs"]):
         
         elif e == 100:
             torch.save(model,"model/run3-100.pth")
-
+            lr = 1e-4
 
 
         elif e == 250:
@@ -102,11 +102,11 @@ for e in range(PARAMS["epochs"]):
 
         
         elif e == 1000:
-            lr= 1e-4
+            lr= 1e-5
             torch.save(model,"model/run3-1000.pth")
 
         elif e == 1500:
-            lr = 1e-5
+            lr = 1e-6
 print("\nTraining Time (in minutes) =",(time()-time0)/60)
 
         
