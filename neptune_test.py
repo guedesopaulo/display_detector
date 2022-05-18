@@ -1,4 +1,6 @@
 import neptune.new as neptune
+
+#Import just one network
 #from datatest import *
 #from alexnet import *
 from resnet18 import *
@@ -26,8 +28,16 @@ testloader = DataLoader(test_data, batch_size=PARAMS['batch_size_test'], shuffle
 
 criterion = nn.L1Loss() 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = resnet18 = ResNet(3, ResBlock, [2, 2, 2, 2], useBottleneck=False, outputs=8).to(device=device)
+
+#Use just one netwoek
+
+#Resnet
+model = ResNet(3, ResBlock, [2, 2, 2, 2], useBottleneck=False, outputs=8).to(device=device)
 summary(model, (3, 224, 224))
+
+#Alexnet
+#model = AlexNet().to(device=device)
+
 print(device)
 optimizer = optim.Adam(model.parameters(), lr= PARAMS["learning_rate"])
 time0 = time()
