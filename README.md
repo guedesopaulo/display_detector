@@ -1,3 +1,3 @@
 # Git in Construction
 
-Link to [trained nets](https://drive.google.com/file/d/1guL_K_ITQtkVt9_QHakpSE2nB44z9EP6/view?usp=sharing).
+Link to [trained nets](https://drive.google.com/drive/folders/1F4uiQCDq5op0oz3OQVBEJeWcxTUkXfHe?usp=sharing).
