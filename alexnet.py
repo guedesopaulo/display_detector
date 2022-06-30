@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Mar 30 20:10:23 2022
-
-@author: pauloguedes
-"""
-
-
 import os
 import pandas as pd
 import torch

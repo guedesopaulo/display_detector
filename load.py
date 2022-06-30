@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Apr  6 17:12:12 2022
-
-@author: pauloguedes
-"""
-
-
 # USE JUST ONE
 #from alexnet import *
 #from displaynet import *
