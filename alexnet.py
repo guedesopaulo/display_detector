@@ -52,10 +52,10 @@ class AlexNet(nn.Module):
     def forward(self,x):
         x = F.relu(self.conv1(x))
         x = self.maxpool(x)
-        x = self.batch2d_1(x)
+        #x = self.batch2d_1(x)
         x = F.relu(self.conv2(x))
         x = self.maxpool(x)
-        x = self.batch2d_2(x)
+        #x = self.batch2d_2(x)
         x = F.relu(self.conv3(x))
         x = F.relu(self.conv4(x))
         x = F.relu(self.conv5(x))

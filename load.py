@@ -17,27 +17,31 @@ import pandas as pd
 import os
 from torchvision.io import read_image
 import torchvision.transforms.functional as fn
-#from alexnet import *
+from alexnet import *
 #from datatest import *
-from resnet18 import *
+#from resnet18 import *
 
 
 
-
-model = torch.load("model/run3-100.pth")
+model = torch.load("model/original-1000.pth")
 #model.eval()
 
-test_data = CustomImageDataset(annotations_file='dataset/train/train.csv',img_dir = 'dataset/train')
+test_data = CustomImageDataset(annotations_file='dataset/test/test.csv',img_dir = 'dataset/test')
 testloader = DataLoader(test_data, batch_size=1, shuffle=False)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 df = pd.read_csv('dataset/test/test.csv')
 acc_t = 0
+acc_list = []
+#resize_vector =torch.Tensor([8.57,4.82,8.57,4.82,8.57,4.82,8.57,4.82]).to(device=device) #resize vector for resnet
+resize_vector = torch.Tensor([8.458,4.758,8.458,4.758,8.458,4.758,8.458,4.758]).to(device=device) #resize vector for alexnet
 for batch_idx, (data,targets) in enumerate(testloader):
     with torch.no_grad():
         data = data.float()
         data = data.to(device=device)
         targets = targets.to(device=device)
         points = model(data)
+        points = torch.mul(resize_vector,points)
+        #targets = torch.mul(resize_vector,targets)
         acc = torch.pow(abs(targets-points),2)
         acc_1 =  torch.sqrt(acc[0][0] + acc[0][1])
         acc_2 =  torch.sqrt(acc[0][2] + acc[0][3])
@@ -45,11 +49,12 @@ for batch_idx, (data,targets) in enumerate(testloader):
         acc_4 =  torch.sqrt(acc[0][6] + acc[0][7])
         acc = (acc_1 + acc_2 + acc_3 + acc_4)/4
         print(acc)
+        acc_list.append(acc.item())
         acc_t += acc
         points = points.to(device=("cpu"))
         points = points.numpy()
         points = points.astype(int)
-        """
+        
         img = cv2.imread("dataset/test/" + df["0"][batch_idx])
         
         V1 = (points[0][0],points[0][1])
@@ -67,11 +72,12 @@ for batch_idx, (data,targets) in enumerate(testloader):
         img = cv2.merge((b,g,r))
         #plt.imshow(img)
         cv2.imwrite(str(batch_idx) + ".jpg",img)
-        """        
+              
 
 acc_t = acc_t.item()
 print(acc_t/len(testloader))
-
+df_acc = pd.DataFrame(acc_list)
+df_acc.hist(column=0,bins=50, figsize=(12,8), color='#86bf91', zorder=2, rwidth=0.9)
 
 
         

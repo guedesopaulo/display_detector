@@ -4,7 +4,7 @@ import neptune.new as neptune
 #from datatest import *
 #from alexnet import *
 from resnet18 import *
-from torchsummary import summary
+#from torchsummary import summary
 
 run = neptune.init(project = "pog/TCC",
                    api_token = "eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiJlZGMwODI3OC0yYWI3LTQ5ZmYtOGM5MS1hY2ZkYmE0ZDNhMWUifQ==",
@@ -12,7 +12,7 @@ run = neptune.init(project = "pog/TCC",
                    source_files = ['*.py'])
 
 
-PARAMS = {'batch_size_train': 16,
+PARAMS = {'batch_size_train': 8,
          'batch_size_test': 1,
          'learning_rate': 1e-3,
          'epochs': 2000,
@@ -32,8 +32,8 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 #Use just one netwoek
 
 #Resnet
-model = ResNet(3, ResBlock, [2, 2, 2, 2], useBottleneck=False, outputs=8).to(device=device)
-summary(model, (3, 224, 224))
+model =  ResNet(3, ResBlock, [3, 4, 6, 3], useBottleneck=False, outputs=8).to(device=device)
+#summary(model, (3, 224, 224))
 
 #Alexnet
 #model = AlexNet().to(device=device)

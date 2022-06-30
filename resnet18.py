@@ -121,7 +121,7 @@ class CustomImageDataset(Dataset):
         image = fn.resize(image, size=[224,224])
         label = self.img_labels.iloc[idx, 1]
         out = self.img_labels.iloc[idx, 1:9]
-        out = torch.tensor([out[0],out[1],out[2],out[3],out[4],out[5],out[6],out[7]])
+        out = torch.tensor([out[0]/8.57,out[1]/4.82,out[2]/8.57,out[3]/4.82,out[4]/8.57,out[5]/4.82,out[6]/8.57,out[7]/4.82])
         #print (a)
         if self.transform:
             image = self.transform(image)
