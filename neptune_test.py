@@ -1,13 +1,13 @@
 import neptune.new as neptune
 
 #Import just one network
-#from datatest import *
+from displaynet import *
 #from alexnet import *
-from resnet18 import *
-#from torchsummary import summary
+#from resnet18 import *
 
-run = neptune.init(project = "pog/TCC",
-                   api_token = "eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiJlZGMwODI3OC0yYWI3LTQ5ZmYtOGM5MS1hY2ZkYmE0ZDNhMWUifQ==",
+
+run = neptune.init(project = "your_project",
+                   api_token = "your_token",
                    name= "resnet",
                    source_files = ['*.py'])
 
@@ -29,14 +29,17 @@ testloader = DataLoader(test_data, batch_size=PARAMS['batch_size_test'], shuffle
 criterion = nn.L1Loss() 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-#Use just one netwoek
+#Use just one network
 
 #Resnet
-model =  ResNet(3, ResBlock, [3, 4, 6, 3], useBottleneck=False, outputs=8).to(device=device)
-#summary(model, (3, 224, 224))
+#model =  ResNet(3, ResBlock, [3, 4, 6, 3], useBottleneck=False, outputs=8).to(device=device)
 
-#Alexnet
-#model = AlexNet().to(device=device)
+
+#Alexnet and Displaynet
+model = AlexNet().to(device=device)
+
+
+
 
 print(device)
 optimizer = optim.Adam(model.parameters(), lr= PARAMS["learning_rate"])
