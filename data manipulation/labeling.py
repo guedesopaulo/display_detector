@@ -3,7 +3,7 @@ import pandas as pd
 
 
 #reading .csv, it need to be have the fallowing colunms: name;x1;y1;x2;y2;x3;y3;x4;y4
-df = pd.read_csv("vai.csv")
+df = pd.read_csv("your.csv")
 
 # Mouse callback function to get x,y points
 global click_list

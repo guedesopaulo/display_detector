@@ -1,14 +1,14 @@
-# USE JUST ONE
+# USE JUST ONE NETWORK AND DATALOADER
 #from alexnet import *
 #from displaynet import *
 from resnet18 import *
 
 
 
-model = torch.load("models/resnet50.pth")
+model = torch.load("models/resnet50.pth") #read model
 #model.eval()
 
-test_data = CustomImageDataset(annotations_file='dataset/test/test.csv',img_dir = 'dataset/test')
+test_data = CustomImageDataset(annotations_file='dataset/test/test.csv',img_dir = 'dataset/test') #paths do csv and folder
 testloader = DataLoader(test_data, batch_size=1, shuffle=False)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 df = pd.read_csv('dataset/test/test.csv')
@@ -16,6 +16,7 @@ acc_t = 0
 acc_list = []
 
 # USE JUST ONE
+# RESIZE VECTOR TO ADAPT INPUT SIZE OF THE NETWORK TO 1920X1080 IMAGES 
 resize_vector =torch.Tensor([8.57,4.82,8.57,4.82,8.57,4.82,8.57,4.82]).to(device=device) #resize vector for resnet
 #resize_vector = torch.Tensor([8.458,4.758,8.458,4.758,8.458,4.758,8.458,4.758]).to(device=device) #resize vector for alexnet
 #resize_vector = torch.Tensor([1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]).to(device=device) #resize vector for displaynet
