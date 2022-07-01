@@ -1,6 +1,6 @@
 # Display Detector
 
-Graduation Work Project by Paulo de Oliveira Guedes, from the Electronic Engineering course, at the Federal University of Pernambuco (UFPE).
+Graduation Work Project by Paulo de Oliveira Guedes, from the Electronic Engineering course, at the Universidade Federal de Pernambuco (UFPE).
 
 This work creates a screen detector for the brazilian electronic voting machine, using AlexNet, Resnet50 and a modified AlexNet called Displaynet to predict the 4 corners of the screen:
 
@@ -10,6 +10,10 @@ This work creates a screen detector for the brazilian electronic voting machine,
 
 
 # Prerequisites
+
+* Python 3.9+
+
+Install necessary libraries:
 
 ```
 $ pip install -r requirements.txt
